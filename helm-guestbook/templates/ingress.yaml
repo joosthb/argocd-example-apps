@@ -1,8 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: argocd-server
-  namespace: argocd
+  name: {{ template "helm-guestbook.fullname" . }}
 spec:
   entryPoints:
     - websecure
@@ -11,7 +10,7 @@ spec:
       match: Host(`guestbook.derby.home`)
       priority: 10
       services:
-        - name: argocd-server
+        - name: {{ template "helm-guestbook.fullname" . }}
           port: 80
   tls:
     certResolver: default
