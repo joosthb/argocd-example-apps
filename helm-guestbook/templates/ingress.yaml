@@ -8,18 +8,11 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.derby.home`)
+      match: Host(`guestbook.derby.home`)
       priority: 10
       services:
         - name: argocd-server
           port: 80
-    - kind: Rule
-      match: Host(`argocd.derby.home`) && Headers(`Content-Type`, `application/grpc`)
-      priority: 11
-      services:
-        - name: argocd-server
-          port: 80
-          scheme: h2c
   tls:
     certResolver: default
     options: {}
